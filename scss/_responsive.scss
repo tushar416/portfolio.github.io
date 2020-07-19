@@ -1,0 +1,54 @@
+// smartphone
+
+@include screenSm {
+  .lg-heading {
+    margin-bottom: 1rem;
+  }
+  .nav {
+    width: 100%;
+    flex-direction: column;
+    .portrait,
+    .nav-bar {
+      width: 100%;
+      min-height: 0;
+
+      &.show {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    .nav-bar {
+      height: 75vh;
+    }
+    .portrait {
+      height: 25vh;
+      .menu-img {
+        height: 150px;
+        width: 150px;
+      }
+    }
+  }
+}
+
+// tablet
+@include screenMd {
+  .about {
+    grid-template-areas: "img" "text";
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 30px;
+    &-img {
+      justify-self: center;
+    }
+    &-text {
+      text-align: center;
+    }
+  }
+}
+
+// desktop and laptop
+@include screenLg {
+  .about {
+    grid-gap: 20px;
+  }
+}

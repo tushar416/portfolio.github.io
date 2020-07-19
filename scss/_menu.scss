@@ -1,0 +1,120 @@
+.hamburger {
+  border-radius: 50%;
+  width: 30px;
+  height: auto;
+  position: fixed;
+  top: 40px;
+  right: 50px;
+  cursor: pointer;
+  @include transition;
+  z-index: 4;
+
+  .line {
+    width: 100%;
+    height: 4px;
+    background: #fff;
+    margin-top: 5px;
+    @include transition;
+  }
+  &.close {
+    transform: rotate(360deg);
+
+    .line {
+      // line rotate
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      // hide line
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      // rotate line
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -8px);
+      }
+    }
+  }
+}
+
+// menu
+
+.nav {
+  display: flex;
+  visibility: hidden;
+  overflow: hidden;
+  z-index: 3;
+  &.show {
+    visibility: visible;
+  }
+  position: fixed;
+  .portrait {
+    height: 100vh;
+    width: 50vw;
+    background: lighten(#284b63, 5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate3d(-100%, -100%, 0);
+    @include transition;
+    &.show {
+      // add show class translate top left to center
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  .menu-img {
+    border: 3px solid $secondary-color;
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+  }
+  .nav-bar {
+    background: darken($primary-color, 7);
+    height: 100vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    transform: translate3d(100%, 100%, 0);
+    @include transition;
+
+    &.show {
+      // add show class translate bottom right to center
+      transform: translate3d(0, 0, 0);
+    }
+    .nav-item {
+      font-size: 2rem;
+      list-style: none;
+      margin-top: 2rem;
+      transform: translate3d(100%, 0, 0);
+      transition-duration: 0.5s;
+
+      &.show {
+        // add show class translate bottom right to center
+        transform: translate3d(0, 0, 0);
+      }
+      &.current > a {
+        color: $secondary-color;
+      }
+      & a {
+        text-decoration: none;
+        color: #fff;
+        @include transition;
+        &:hover {
+          color: $secondary-color;
+          border-bottom: 2px solid #fff;
+        }
+      }
+    }
+  }
+}
+
+// set nav item delay 0.1s
+
+@for $x from 1 through 4 {
+  .nav-item:nth-child(#{$x}) {
+    transition-delay: $x * 0.1s;
+  }
+}

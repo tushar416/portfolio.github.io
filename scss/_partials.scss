@@ -1,0 +1,54 @@
+$primary-color: #444;
+$secondary-color: rgb(250, 81, 81);
+$show-img: true;
+$home-img: url("/dist/img/blue-and-red-plants-2505693.jpg");
+
+@mixin transition {
+  transition: all 0.6s ease;
+}
+
+@mixin background {
+  @if $show-img {
+    &#bg-img {
+      background: $home-img;
+      background-size: cover;
+      background-attachment: fixed;
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba($primary-color, 0.8);
+        z-index: -1;
+      }
+    }
+  }
+}
+
+@mixin screenSm {
+  @media screen and (max-width: 500px) {
+    @content;
+  }
+}
+@mixin screenMd {
+  @media screen and (max-width: 750px) {
+    @content;
+  }
+}
+@mixin screenLg {
+  @media screen and (min-width: 751px) {
+    @content;
+  }
+}
+
+// set text color
+
+@function set-text-color($color) {
+  @if (lightness($color) > 40) {
+    @return #444;
+  } @else {
+    @return #fff;
+  }
+}

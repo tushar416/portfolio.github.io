@@ -1,0 +1,183 @@
+@import "partials", "menu";
+
+html {
+  height: 100%;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  @include background;
+  line-height: 1.5;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  .lg-heading {
+    font-size: 5rem;
+    margin-top: 20vh;
+    &-secondary {
+      color: $secondary-color;
+      animation-name: slide;
+      animation-duration: 2s;
+      position: relative;
+    }
+    @keyframes slide {
+      from {
+        right: -100%;
+      }
+      to {
+        right: 0;
+      }
+    }
+  }
+  .sm-heading {
+    background: lighten(#5777eb, 5);
+  }
+}
+
+// icons
+.icons {
+  padding: 2rem;
+  & a {
+    padding-left: 2rem;
+    color: #fff;
+    @include transition;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+// about
+
+.about {
+  display: grid;
+  grid-template-areas: "img text text";
+  line-height: 2rem;
+  align-items: center;
+  margin: 50px auto;
+  width: 70%;
+  justify-content: space-between;
+  grid-template-columns: 1fr 2fr;
+  &-img {
+    height: 200px;
+    width: 200px;
+    grid: img;
+
+    border: 3px solid $secondary-color;
+    border-radius: 50%;
+  }
+  &-text {
+    text-align: left;
+    grid: text;
+    .languages {
+      color: $secondary-color;
+    }
+  }
+}
+
+#bg {
+  background: rgba(#1b263b, 0.8);
+}
+
+// project section
+
+.projects {
+  display: grid;
+  grid-row-gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  justify-content: center;
+  margin: 100px;
+
+  .project {
+    height: 250px;
+    width: 250px;
+    border: solid 2px #fff;
+    border-bottom: solid 5px $secondary-color;
+    @include transition;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    &::after {
+      content: "";
+      background: $secondary-color;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      @include transition;
+    }
+    &:hover {
+      &::after {
+        top: 0;
+        opacity: 0.8;
+      }
+      .open {
+        opacity: 1;
+      }
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .open {
+      color: #fff;
+      text-align: center;
+      position: absolute;
+      right: 30%;
+      top: 40%;
+
+      z-index: 1;
+      opacity: 0;
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+// Contact
+
+.contact {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 50px;
+  & a {
+    text-decoration: none;
+    color: $secondary-color;
+  }
+  & h2 {
+    border: solid 3px $secondary-color;
+    padding: 20px;
+    margin: 20px auto 50px;
+    color: $secondary-color;
+    cursor: pointer;
+    @include transition;
+    &:hover {
+      padding: 15px;
+    }
+  }
+}
+
+// footer
+
+footer {
+  margin-top: auto;
+  background: darken($primary-color, 3);
+  padding: 25px 0 25px;
+}
+
+@import "responsive";
